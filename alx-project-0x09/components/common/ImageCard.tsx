@@ -1,11 +1,22 @@
+import React from "react";
 import { GeneratedImageProps } from "@/interfaces";
 
-const ImageCard: React.FC<GeneratedImageProps> = ({ imageUrl, prompt, width, action }) => {
+const ImageCard: React.FC<GeneratedImageProps> = ({ imageUrl, prompt, width = "512px", height = "512px", action }) => {
     return (
-        <div onClick={() => action(imageUrl)} className="mt-6 border hover:cursor-pointer">
-            <img src={imageUrl} alt={prompt} className={`w-full max-w-md rounded-lg shadow-lg`} />
-            <h2 className={`${width ? 'text-sm' : 'text-xl'} font-semibold mt-2`}>Your Prompt:</h2>
-            <p className={`${width ? 'text-xs' : 'text-lg'} text-gray-700 mb-4`}>{prompt}</p>
+        <div className="mt-6 text-center">
+            <img
+                src={imageUrl}
+                alt={prompt}
+                width={parseInt(width)}
+                height={parseInt(height)}
+                className="mx-auto rounded-lg shadow-lg"
+            />
+            <button
+                onClick={() => action(imageUrl)}
+                className="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+                Use this image
+            </button>
         </div>
     );
 };
